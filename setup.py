@@ -38,7 +38,7 @@ setup(
         'requests',
         'xmltodict',
         'logutils==0.3.3',
-        'python-gnupg==0.3.9',
+        'python-gnupg==0.4.4',
         'prompt_toolkit'
     ],
     tests_require=[
