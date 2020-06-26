@@ -234,7 +234,7 @@ class Repository():
         """
         manifest_path = "{0}/{1}".format(self.url, metadata['location'])
         req = requests.get(manifest_path, stream=True)
-        if req.status_code is 200:
+        if req.status_code == 200:
             gz_manifest = req.raw.read()
 
         self.verify_checksum(gz_manifest, metadata['checksum'],
