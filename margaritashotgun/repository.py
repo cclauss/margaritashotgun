@@ -74,7 +74,7 @@ class Repository():
         req_metadata = requests.get(repo_metadata_path)
 
         # Fetch the key to disk
-        if req_key.status_code is 200:
+        if req_key.status_code == 200:
             logger.debug(("found repository signing key at "
                           "{0}".format(repo_key_path)))
             self.raw_key = req_key.content
@@ -84,7 +84,7 @@ class Repository():
             raise RepositoryMissingSigningKeyError(repo_key_path)
 
         # Fetch the fingerprint from the metadata
-        if req_metadata.status_code is 200:
+        if req_metadata.status_code == 200:
             logger.debug(("found key metadata at "
                           "{0}".format(repo_metadata_path)))
             print(req_metadata.content)
@@ -176,7 +176,7 @@ class Repository():
                                                   self.metadata_file)
         # load metadata
         req = requests.get(metadata_path)
-        if req.status_code is 200:
+        if req.status_code == 200:
             raw_metadata = req.content
         else:
             raise RepositoryError(metadata_path, ("status code not 200: "
@@ -361,7 +361,7 @@ class Repository():
         """
 
         req = requests.get(signature_url)
-        if req.status_code is 200:
+        if req.status_code == 200:
             tm = int(time.time())
             datestamp = datetime.utcfromtimestamp(tm).isoformat()
             sigfile = "repo-{0}-tmp.sig".format(datestamp)
@@ -396,7 +396,7 @@ class Repository():
         """
 
         req = requests.get(signature_url, stream=True)
-        if req.status_code is 200:
+        if req.status_code == 200:
             sigfile = req.raw
         else:
             raise RepositoryMissingSignatureError(signature_url)
